@@ -12,7 +12,7 @@ long_description = (here / 'README.md').read_text(encoding='utf-8')
 
 setup(
     name='wildmatch',
-    version='0.2.0',
+    version='0.2.1',
     description='A Twitter bot that posts the number of astronauts in space every day.',
     long_description=long_description,
     long_description_content_type='text/markdown',
