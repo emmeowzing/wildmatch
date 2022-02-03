@@ -8,7 +8,12 @@ executors:
     docker:
       - image: cimg/base:stable
 
-commands: {}
+commands:
+  pylint:
+    description: Run pylint
+    steps:
+      - run:
+          command: pylint
 
 jobs: {}
 
