@@ -50,7 +50,7 @@ def input_file(fname: str, wildfilter: str) -> None:
     with open(fname, mode='r') as fp_paths, open(wildfilter, mode='r') as fp_wildfilter:
         spec = pathspec.PathSpec.from_lines('gitwildmatch', fp_wildfilter)
         for line in fp_paths:
-            path = line.read().rstrip('\n')
+            path = line.rstrip('\n')
             if spec.match_file(path):
                 print(path, file=sys.stdout)
 
@@ -74,7 +74,7 @@ def main() -> None:
     if not pathlib.Path(args.conf).is_file():
         print_error(f'File {args.conf} does not exist.')
 
-    if not (args.input or sys.stdin.isatty()):
+    if not args.input and sys.stdin.isatty():
         print_error('Must provide either an input file for piped values to consume.')
     elif args.input:
         # Read this file's lines, one at a time, for processing.
