@@ -56,7 +56,7 @@ commands:
           name: Publish package to PyPI.
           command: |
             pip install twine
-            twine upload --repository wildmatch dist/* -u $PYPI_USERNAME -p $API_TOKEN
+            python -m twine upload --repository wildmatch dist/* -u $PYPI_USERNAME -p $API_TOKEN
 
 jobs:
   # TODO: Make it so I don't have to check out the code and install deps every time to reduce cost. Cache venv.
