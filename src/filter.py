@@ -36,7 +36,7 @@ def input_piped(wildfilter: str) -> None:
     with open(wildfilter, encoding='utf-8') as fp_wildfilter:
         spec = pathspec.PathSpec.from_lines('gitwildmatch', fp_wildfilter)
         for path in sys.stdin:
-            if spec.match_file(path):
+            if not spec.match_file(path):
                 print(path, file=sys.stdout)
 
 
@@ -56,7 +56,7 @@ def input_file(fname: str, wildfilter: str) -> None:
         spec = pathspec.PathSpec.from_lines('gitwildmatch', fp_wildfilter)
         for line in fp_paths:
             path = line.rstrip('\n')
-            if spec.match_file(path):
+            if not spec.match_file(path):
                 print(path, file=sys.stdout)
 
 
