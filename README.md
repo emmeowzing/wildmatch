@@ -16,3 +16,10 @@ options:
   -i INPUT, --input INPUT
                         optionally specify an input file to filter by the configuration file
 ```
+
+### Install
+
+Installation requires Python v3.10 or later.
+```
+pip install wildmatch
+```
