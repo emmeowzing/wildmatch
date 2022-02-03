@@ -12,7 +12,7 @@ long_description = (here / 'README.md').read_text(encoding='utf-8')
 
 setup(
     name='wildmatch',
-    version='0.2.2',
+    version='0.2.3',
     description='A Twitter bot that posts the number of astronauts in space every day.',
     long_description=long_description,
     long_description_content_type='text/markdown',
@@ -28,7 +28,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'wildmatch=filter:main',
+            'wildmatch=wildmatch:filter.main',
         ],
     },
     project_urls={  # Optional
