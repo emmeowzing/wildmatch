@@ -1,8 +1,12 @@
+"""
+Filter input files or stdin lines by a wildmatch filter/config file.
+"""
+
 from argparse import ArgumentParser
 
-import pathspec
 import sys
 import pathlib
+import pathspec
 
 
 def print_error(message: str, exit_code: int = 1) -> None:
@@ -16,7 +20,7 @@ def print_error(message: str, exit_code: int = 1) -> None:
         Nothing.
     """
     print(f'ERROR: {message}.' if message[-1] != '.' else f'ERROR: {message}', file=sys.stderr)
-    exit(exit_code)
+    sys.exit(exit_code)
 
 
 def input_piped(wildfilter: str) -> None:
@@ -29,7 +33,7 @@ def input_piped(wildfilter: str) -> None:
     Returns:
         Nothing. The output is printed to stdout.
     """
-    with open(wildfilter, mode='r') as fp_wildfilter:
+    with open(wildfilter, encoding='utf-8') as fp_wildfilter:
         spec = pathspec.PathSpec.from_lines('gitwildmatch', fp_wildfilter)
         for path in sys.stdin:
             if spec.match_file(path):
@@ -47,7 +51,8 @@ def input_file(fname: str, wildfilter: str) -> None:
     Returns:
         Nothing. The output is printed to stdout.
     """
-    with open(fname, mode='r') as fp_paths, open(wildfilter, mode='r') as fp_wildfilter:
+    with open(fname, encoding='utf-8') as fp_paths, \
+         open(wildfilter, encoding='utf-8') as fp_wildfilter:
         spec = pathspec.PathSpec.from_lines('gitwildmatch', fp_wildfilter)
         for line in fp_paths:
             path = line.rstrip('\n')
@@ -59,7 +64,9 @@ def main() -> None:
     """
     Run argparse.
     """
-    parser = ArgumentParser(description='Filter lists of paths by arbitrary .gitignore-like configuration files.')
+    parser = ArgumentParser(
+        description='Filter lists of paths by arbitrary .gitignore-like configuration files.'
+    )
 
     parser.add_argument('-c', '--conf', type=str, default='.diffignore',
         help='optionally set the configuration file to filter by, defaults to .diffignore'
