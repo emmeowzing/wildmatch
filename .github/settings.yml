@@ -1,5 +1,5 @@
 repository:
-  name: wildmatch-filter
+  name: wildmatch
   description: A CLI helper to filter inputs by .gitignore-like conf files
   homepage: https://github.com/bjd2385/wildmatch-filter
   topics: git, wildmatch, gitignore, CLI
