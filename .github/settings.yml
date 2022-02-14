@@ -1,7 +1,7 @@
 repository:
   name: wildmatch
   description: A CLI helper to filter inputs by .gitignore-like conf files
-  homepage: https://github.com/bjd2385/wildmatch-filter
+  homepage: https://pypi.org/project/wildmatch/
   topics: git, wildmatch, gitignore, CLI
   private: false
   has_issues: true
@@ -25,7 +25,7 @@ labels:
     description: An issue with the system 🐛.
 
   - name: feature
-    color: '#336699'
+    color: "#336699"
     description: New functionality.
 
   - name: Help Wanted

@@ -12,8 +12,8 @@ long_description = (here / 'README.md').read_text(encoding='utf-8')
 
 setup(
     name='wildmatch',
-    version='0.2.4',
-    description='A Twitter bot that posts the number of astronauts in space every day.',
+    version='0.2.5',
+    description='A pathspec wrapper/CLI for use in CI/pipelines',
     long_description=long_description,
     long_description_content_type='text/markdown',
     author='Brandon Doyle',
