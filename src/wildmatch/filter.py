@@ -82,7 +82,7 @@ def main() -> None:
         print_error(f'File {args.conf} does not exist.')
 
     if not args.input and sys.stdin.isatty():
-        print_error('Must provide either an input file for piped values to consume.')
+        print_error('Must provide either an input file or piped values to consume.')
     elif args.input:
         # Read this file's lines, one at a time, for processing.
         input_file(args.input, args.conf)
