@@ -1,3 +1,2 @@
 include *.txt
-include .mypy.ini
 recursive-include src *.py
