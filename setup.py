@@ -12,11 +12,11 @@ long_description = (here / 'README.md').read_text(encoding='utf-8')
 
 setup(
     name='wildmatch',
-    version='0.3.0',
+    version='0.3.1',
     description='A pathspec wrapper/CLI for use in CI/pipelines',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    author='Brandon Doyle',
+    author='Emma Doyle',
     author_email='bjd2385.linux@gmail.com',
     keywords='',
     package_dir={'': 'src'},
@@ -28,7 +28,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'wildmatch=wildmatch:filter.main',
+            'wildmatch=wildmatch.filter:main',
         ],
     },
     project_urls={  # Optional
