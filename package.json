@@ -1,0 +1,7 @@
+{
+  "name": "wildmatch",
+  "scripts": {
+    "develop": "python setup.py develop",
+    "freeze": "pip freeze | grep -v \"file:///\" | grep -v \"ssh://\" > \"$(git rev-parse --show-toplevel)\"/requirements.txt"
+  }
+}
