@@ -46,7 +46,7 @@ workflows:
               only: /^v?[0-9]+\.[0-9]+\.[0-9]+$/
 
       - general/python-release-twine:
-          name: pypi premiscale upload [python]
+          name: pypi upload [python]
           context: nexus
           repository: python
           requires:

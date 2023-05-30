@@ -52,17 +52,6 @@ repos:
     hooks:
       - id: circleci-config-validate
 
-  - repo: https://github.com/hadolint/hadolint
-    rev: v2.12.1-beta
-    hooks:
-      - id: hadolint
-        args:
-          - docker/premiscale/Dockerfile
-          - docker/influxdb/Dockerfile
-          - docker/mysql/Dockerfile
-          - --config
-          - .hadolint.yaml
-
   # - repo: https://github.com/k-ogawa-1988/yamale-pre-commit
   #   rev: v0.0.2
   #   hooks:
