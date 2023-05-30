@@ -12,7 +12,7 @@ executors:
 
 
 workflows:
-  wildmatch:
+  src:
     jobs:
       - general/python-pylint:
           executor: python-3-9-13
