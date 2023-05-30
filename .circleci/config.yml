@@ -5,7 +5,7 @@ setup: true
 
 orbs:
   dynamic: bjd2385/dynamic-continuation@3.6.9
-  general: bjd2385/general@0.6.4
+  general: bjd2385/general@dev:391d58e5ffc648ab59a02ea1d9c8a629f4d6671e
   slack: circleci/slack@4.12.1
 
 
@@ -44,7 +44,7 @@ workflows:
             tags:
               only: /^v?[0-9]+\.[0-9]+\.[0-9]+$/
 
-      - general/python-release-twine:
+      - general/python-release-poetry:
           name: pypi upload [python]
           context: nexus
           repository: python
