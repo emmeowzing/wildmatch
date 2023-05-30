@@ -2,7 +2,7 @@ version: 2.1
 
 
 orbs:
-  general: bjd2385/general@dev:c6ca235d1172e29e7ac3fb8101e5135a23aabfb7
+  general: bjd2385/general@dev:972b9047bd95451ee8b3b0979289ca16d68048c3
 
 
 executor:
