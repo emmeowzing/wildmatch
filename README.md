@@ -15,16 +15,16 @@ usage: wildmatch [-h] [-c CONF] [-i INPUT]
 
 Filter lists of paths by arbitrary .gitignore-like configuration files.
 
-options:
+optional arguments:
   -h, --help            show this help message and exit
-  -c CONF, --conf CONF  optionally set the configuration file to filter by, defaults to .diffignore
+  -c CONF, --conf CONF  optionally set the configuration file to filter by, defaults to .diffignore (default: .diffignore)
   -i INPUT, --input INPUT
-                        optionally specify an input file to filter by the configuration file
+                        optionally specify an input file to filter by the configuration file (default: None)
 ```
 
 ## Install
 
-Installation requires Python v3.10 or later.
+Installation requires Python `>=3.9`.
 
 ```shell
 pip install wildmatch

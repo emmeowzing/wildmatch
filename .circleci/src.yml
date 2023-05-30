@@ -1,0 +1,31 @@
+version: 2.1
+
+
+orbs:
+  general: bjd2385/general@0.6.4
+
+
+executor:
+  python-3-9:
+    docker:
+      image: cimg/python:3.9.16
+
+
+workflows:
+  src:
+    jobs:
+      - general/python-pylint:
+          executor: general/python-3-9
+          poetry-version: '1.5.1'
+          filters:
+            branches:
+              ignore:
+                - master
+
+      - general/python-mypy:
+          executor: general/python-3-9
+          configuration_file: pyproject.toml
+          filters:
+            branches:
+              ignore:
+                - master
