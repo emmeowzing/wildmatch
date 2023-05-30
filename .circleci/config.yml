@@ -50,6 +50,8 @@ workflows:
           repository: python
           requires:
             - request-approval
+          user: $PYPI_USERNAME
+          password: $API_TOKEN
           filters:
             branches:
               ignore: /.*/
