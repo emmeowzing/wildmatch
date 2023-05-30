@@ -5,7 +5,7 @@ setup: true
 
 orbs:
   dynamic: bjd2385/dynamic-continuation@3.6.9
-  general: bjd2385/general@dev:bc2dc9d5e2af82a3f50862b4238dde3fcfa5c475
+  general: bjd2385/general@dev:f7d8c93ddd410cb40f3136bec9d9de560a74e97a
   slack: circleci/slack@4.12.1
 
 
@@ -50,7 +50,7 @@ workflows:
           repository: python
           requires:
             - request-approval
-          user: $PYPI_USERNAME
+          username: $PYPI_USERNAME
           password: $API_TOKEN
           filters:
             branches:
