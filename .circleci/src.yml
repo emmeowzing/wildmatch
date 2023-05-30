@@ -2,7 +2,7 @@ version: 2.1
 
 
 orbs:
-  general: bjd2385/general@dev:4044970653de07e4cae89818d73e7a0c447ede1e
+  general: bjd2385/general@dev:00d3c9699f33cbd8e0940010550d42f4ef054b46
 
 
 executor:
@@ -16,7 +16,6 @@ workflows:
     jobs:
       - general/python-pylint:
           executor: general/python-3-9
-          poetry-version: '1.5.1'
           filters:
             branches:
               ignore:
