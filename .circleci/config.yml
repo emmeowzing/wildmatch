@@ -47,7 +47,6 @@ workflows:
       - general/python-release-poetry:
           name: pypi upload
           context: pypi
-          repository: python
           requires:
             - request-approval
           username: $PYPI_USERNAME
