@@ -34,7 +34,7 @@ workflows:
               only: /^v?[0-9]+\.[0-9]+\.[0-9]+$/
 
       - general/github-release:
-          name: Create GitHub release from tag
+          name: GitHub release
           context: github
           requires:
             - request-approval
@@ -45,8 +45,8 @@ workflows:
               only: /^v?[0-9]+\.[0-9]+\.[0-9]+$/
 
       - general/python-release-poetry:
-          name: pypi upload [python]
-          context: nexus
+          name: pypi upload
+          context: pypi
           repository: python
           requires:
             - request-approval
