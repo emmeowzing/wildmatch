@@ -17,8 +17,6 @@ workflows:
           pre-script: rm .python-version
 
       - slack/on-hold:
-          requires:
-            - dynamic/continue
           context: slack
           filters:
             branches:
