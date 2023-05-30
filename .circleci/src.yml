@@ -5,17 +5,11 @@ orbs:
   general: bjd2385/general@0.6.4
 
 
-executors:
-  python-3-9-13:
-    docker:
-      - image: cimg/python:3.9.13
-
-
 workflows:
   src:
     jobs:
       - general/python-pylint:
-          executor: python-3-9-13
+          executor: general/python-3-9
           poetry-version: '1.5.1'
           filters:
             branches:
@@ -23,7 +17,7 @@ workflows:
                 - master
 
       - general/python-mypy:
-          executor: python-3-9-13
+          executor: general/python-3-9
           configuration_file: pyproject.toml
           filters:
             branches:
