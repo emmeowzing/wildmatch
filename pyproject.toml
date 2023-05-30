@@ -19,7 +19,7 @@ keywords = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.9.16"
+python = "^3.9"
 pathspec = "^0.11.1"
 
 [tool.poetry.group.dev.dependencies]
