@@ -5,7 +5,7 @@ setup: true
 
 orbs:
   dynamic: bjd2385/dynamic-continuation@3.6.9
-  general: bjd2385/general@dev:087e6c9754580a34858224cbefc0ceed39b3e3e0
+  general: bjd2385/general@dev:b3d2d28e69d7ae96300ff48c09a90be0c13a287b
   slack: circleci/slack@4.12.1
 
 
