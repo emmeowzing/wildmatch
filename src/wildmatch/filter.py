@@ -1,5 +1,5 @@
 """
-Filter input files or stdin lines by a wildmatch filter/config file.
+Filter lists of paths by arbitrary .gitignore-like configuration files.
 """
 
 
@@ -70,16 +70,16 @@ def main() -> None:
     Run argparse.
     """
     parser = ArgumentParser(
-        description='Filter lists of paths by arbitrary .gitignore-like configuration files.',
+        description=__doc__,
         formatter_class=ArgumentDefaultsHelpFormatter
     )
 
     parser.add_argument('-c', '--conf', type=str, default='.diffignore',
-        help='optionally set the configuration file to filter by, defaults to .diffignore'
+        help='optionally set the configuration file to filter by.'
     )
 
     parser.add_argument('-i', '--input', type=str, default=None,
-        help='optionally specify an input file to filter by the configuration file'
+        help='optionally specify an input file to filter by the configuration file.'
     )
 
     parser.add_argument(
