@@ -2,14 +2,20 @@ version: 2.1
 
 
 orbs:
-  general: bjd2385/general@dev:48693959aa3c1d8e5006c22d1319dc793281398a
+  general: bjd2385/general@0.6.4
+
+
+executor:
+  python-3-9:
+    docker:
+      image: cimg/python:3.9.13
 
 
 workflows:
   src:
     jobs:
       - general/python-pylint:
-          executor: general/python-3-9
+          executor:
           poetry-version: '1.5.1'
           filters:
             branches:
