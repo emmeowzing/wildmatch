@@ -2,11 +2,16 @@
 Filter input files or stdin lines by a wildmatch filter/config file.
 """
 
-from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 
 import sys
 import pathlib
 import pathspec
+
+from importlib import metadata as meta
+from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
+
+
+version = meta.version('wildmatch')
 
 
 def print_error(message: str, exit_code: int = 1) -> None:
@@ -77,7 +82,16 @@ def main() -> None:
         help='optionally specify an input file to filter by the configuration file'
     )
 
+    parser.add_argument(
+        '--version', action='store_true', default=False,
+        help=f'Display wildmatch version ({version}).'
+    )
+
     args = parser.parse_args()
+
+    if args.version:
+        print(f'wildmatch v{version}', file=sys.stdout)
+        sys.exit(0)
 
     if not pathlib.Path(args.conf).is_file():
         print_error(f'File {args.conf} does not exist.')
