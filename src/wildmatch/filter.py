@@ -2,7 +2,7 @@
 Filter input files or stdin lines by a wildmatch filter/config file.
 """
 
-from argparse import ArgumentParser
+from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 
 import sys
 import pathlib
@@ -65,7 +65,8 @@ def main() -> None:
     Run argparse.
     """
     parser = ArgumentParser(
-        description='Filter lists of paths by arbitrary .gitignore-like configuration files.'
+        description='Filter lists of paths by arbitrary .gitignore-like configuration files.',
+        formatter_class=ArgumentDefaultsHelpFormatter
     )
 
     parser.add_argument('-c', '--conf', type=str, default='.diffignore',
@@ -88,7 +89,3 @@ def main() -> None:
         input_file(args.input, args.conf)
     else:
         input_piped(args.conf)
-
-
-if __name__ == '__main__':
-    main()

@@ -1,128 +1,59 @@
 version: 2.1
 
 
+setup: true
+
+
 orbs:
-  general: bjd2385/general@0.6.1
-
-
-executors:
-  python3:
-    docker:
-      - image: cimg/python:3.10.2
-  ubuntu:
-    docker:
-      - image: cimg/base:stable
-
-
-commands:
-  pylint:
-    description: Run pylint
-    parameters:
-      modules_path:
-        type: string
-        description: Path to modules directory in package.
-        default: src
-      configuration_file:
-        type: string
-        description: Path to pylint configuration file
-        default: .pylintrc
-    steps:
-      - run:
-          name: Install dependencies
-          command: pip install -r requirements.txt
-      - run:
-          name: Pylint
-          command: pylint --rcfile=<< parameters.configuration_file >> << parameters.modules_path >>
-
-  mypy:
-    description: Run mypy
-    parameters:
-      modules_path:
-        type: string
-        description: Path to modules directory in package.
-        default: src
-      configuration_file:
-        type: string
-        description: Path to mypy configuration file
-        default: .mypy.ini
-    steps:
-      - run:
-          name: Install dependencies
-          command: pip install -r requirements.txt
-      - run:
-          name: MyPy
-          command: mypy --config-file << parameters.configuration_file >> << parameters.modules_path >>
-  pypi:
-    description: Publish a package to PyPI.
-    steps:
-      - run:
-          name: Build package.
-          command: python setup.py sdist bdist_wheel
-      - run:
-          name: Publish package to PyPI.
-          command: |
-            pip install twine
-            twine upload dist/* -u $PYPI_USERNAME -p $API_TOKEN
-
-
-jobs:
-  # TODO: Make it so I don't have to check out the code and install deps every time to reduce cost. Cache venv.
-  pylint:
-    executor: python3
-    resource_class: small
-    steps:
-      - checkout
-      - pylint
-  mypy:
-    executor: python3
-    resource_class: small
-    steps:
-      - checkout
-      - mypy
-  publish:
-    executor: python3
-    resource_class: small
-    steps:
-      - checkout
-      - pypi
+  dynamic: bjd2385/dynamic-continuation@3.6.9
+  general: bjd2385/general@0.6.4
+  slack: circleci/slack@4.12.1
 
 
 workflows:
-  on-commit:
+  wildmatch:
     jobs:
-      - pylint:
-          filters:
-            branches:
-              ignore:
-                - master
-      - mypy:
-          filters:
-            branches:
-              ignore:
-                - master
+      - dynamic/continue:
+          context: circleci
+          auto-detect: true
 
-  # on-merge:
-  #   jobs:
-  #     - publish:
-  #         context: pypi
-  #         filters:
-  #           branches:
-  #             only:
-  #               - master
-
-  on-tag:
-   # Publish this package to PyPI.
-   jobs:
-      - general/github-release:
-          context: github
+      - slack/on-hold:
+          requires:
+            - dynamic/continue
+          context: slack
           filters:
             branches:
               ignore: /.*/
             tags:
               only: /^v?[0-9]+\.[0-9]+\.[0-9]+$/
 
-      - publish:
-          context: pypi
+      - request-approval:
+          requires:
+            - slack/on-hold
+          type: approval
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v?[0-9]+\.[0-9]+\.[0-9]+$/
+
+      - general/github-release:
+          name: Create GitHub release from tag
+          context: github
+          requires:
+            - request-approval
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v?[0-9]+\.[0-9]+\.[0-9]+$/
+
+      - general/python-release-twine:
+          name: pypi premiscale upload [python]
+          context: nexus
+          repository: python
+          requires:
+            - request-approval
           filters:
             branches:
               ignore: /.*/

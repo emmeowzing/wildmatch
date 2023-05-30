@@ -24,7 +24,7 @@ options:
 
 ## Install
 
-Installation requires Python v3.10 or later.
+Installation requires Python `^3.9` or later.
 
 ```shell
 pip install wildmatch
