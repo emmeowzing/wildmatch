@@ -14,8 +14,7 @@ workflows:
   wildmatch:
     jobs:
       - dynamic/continue:
-          context: circleci
-          auto-detect: true
+          context: orb-publishing
 
       - slack/on-hold:
           requires:
