@@ -20,7 +20,7 @@ keywords = [
 
 [tool.poetry.dependencies]
 python = "^3.9"
-pathspec = "^0.11.1"
+pathspec = "^0.12.0"
 
 [tool.poetry.group.dev.dependencies]
 twine = "^4.0.2"
